@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentação Técnica - Sistema de Cadastro de Veículos</title>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { padding: 0; }
+            .capa { page-break-after: always; }
+            h1 { page-break-after: avoid; }
+            h2 { page-break-after: avoid; }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.7;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            background: #fff;
+        }
+
+        /* Botao imprimir */
+        .no-print {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+        }
+        .btn-pdf {
+            background: #dc3545;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .btn-pdf:hover { background: #c82333; }
+
+        /* Capa */
+        .capa {
+            text-align: center;
+            padding-top: 100px;
+            page-break-after: always;
+        }
+        .logo-fabrica {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #333;
+            border-top: 3px solid #007bff;
+            border-bottom: 3px solid #007bff;
+            padding: 20px 40px;
+            display: inline-block;
+            margin-bottom: 60px;
+        }
+        .capa h1 {
+            font-size: 30pt;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .capa h2 {
+            font-size: 16pt;
+            color: #555;
+            font-weight: normal;
+            margin-bottom: 80px;
+        }
+        .capa .info p {
+            font-size: 12pt;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        /* Conteudo */
+        h1 {
+            font-size: 20pt;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 14pt;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+        h3 {
+            font-size: 12pt;
+            color: #555;
+            margin-top: 18px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 11pt;
+        }
+        th, td {
+            border: 1px solid #bbb;
+            padding: 10px;
+            text-align: left;
+        }
+        th { background: #f0f0f0; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        li { margin-bottom: 6px; }
+
+        /* Organograma */
+        .organograma {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .org-box {
+            display: inline-block;
+            padding: 14px 28px;
+            margin: 6px;
+            border: 2px solid #007bff;
+            border-radius: 6px;
+            background: #f8f9fa;
+            font-weight: bold;
+            font-size: 11pt;
+        }
+        .org-linha {
+            width: 2px;
+            height: 22px;
+            background: #007bff;
+            margin: 0 auto;
+        }
+        .org-nivel {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Codigo */
+        .codigo {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 10pt;
+            overflow-x: auto;
+            margin: 12px 0;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Assinatura */
+        .assinatura {
+            margin-top: 80px;
+            text-align: center;
+        }
+        .assinatura-line {
+            border-top: 1px solid #333;
+            width: 350px;
+            margin: 0 auto;
+            padding-top: 10px;
+            font-size: 12pt;
+        }
+
+        .sumario { margin-bottom: 30px; }
+        .sumario ol { margin-left: 30px; }
+        .sumario a { color: #007bff; text-decoration: none; }
+        .sumario a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<!-- BOTAO IMPRIMIR -->
+<div class="no-print">
+    <button class="btn-pdf" onclick="window.print()">🖨️ Salvar como PDF / Imprimir</button>
+</div>
+
+<!-- CAPA -->
+<div class="capa">
+    <div class="logo-fabrica">
+        FÁBRICA DE SOFTWARE JHONNY TAFAREL<br>
+        Soluções em Desenvolvimento Web
+    </div>
+    <br><br>
+    <h1>DOCUMENTAÇÃO TÉCNICA</h1>
+    <h2>Sistema de Cadastro de Veículos</h2>
+    <div class="info">
+        <p><strong>Cliente:</strong> Empresa Comercial de Veículos</p>
+        <p><strong>Projeto:</strong> Desafio Profissional - Faculdade</p>
+        <p><strong>Responsável Técnico:</strong> Jhonny Tafarel</p>
+        <p><strong>Cargo:</strong> Dev Full Stack</p>
+        <p><strong>Data de Entrega:</strong> 25 de Abril de 2026</p>
+        <p><strong>Versão:</strong> 1.0</p>
+    </div>
+</div>
+
+<!-- SUMÁRIO -->
+<h1>Sumário</h1>
+<div class="sumario">
+    <ol>
+        <li><a href="#sec1">Organograma da Fábrica de Software</a></li>
+        <li><a href="#sec2">Resumo Executivo</a></li>
+        <li><a href="#sec3">Escopo do Projeto</a></li>
+        <li><a href="#sec4">Arquitetura do Sistema</a></li>
+        <li><a href="#sec5">Requisitos Técnicos</a></li>
+        <li><a href="#sec6">Guia de Instalação e Configuração</a></li>
+        <li><a href="#sec7">Guia de Uso do Sistema</a></li>
+        <li><a href="#sec8">APIs Disponíveis</a></li>
+        <li><a href="#sec9">Manutenção e Suporte</a></li>
+        <li><a href="#sec10">Considerações Finais</a></li>
+    </ol>
+</div>
+
+<!-- SEÇÃO 1 -->
+<h1 id="sec1">1. Organograma da Fábrica de Software</h1>
+<p>Abaixo apresentamos a estrutura organizacional da equipe responsável pelo desenvolvimento e entrega deste sistema.</p>
+
+<div class="organograma">
+    <div class="org-box">Direção / Cliente</div>
+    <div class="org-linha"></div>
+    <div class="org-box" style="background:#e7f1ff;">Gerente de Projetos</div>
+    <div class="org-linha"></div>
+    <div class="org-nivel">
+        <div class="org-box">Dev Full Stack<br><small>Jhonny Tafarel</small></div>
+        <div class="org-box">Analista de Banco de Dados<br><small>MySQL / MariaDB</small></div>
+        <div class="org-box">Analista de QA<br><small>Testes e Validação</small></div>
+    </div>
+    <div class="org-linha"></div>
+    <div class="org-nivel">
+        <div class="org-box">Front-end<br><small>HTML / CSS / JS</small></div>
+        <div class="org-box">Back-end<br><small>PHP / API REST</small></div>
+        <div class="org-box">DevOps<br><small>XAMPP / Deploy</small></div>
+    </div>
+</div>
+
+<table>
+    <tr><th>Função</th><th>Responsável</th><th>Atribuições</th></tr>
+    <tr><td>Gerente de Projetos</td><td>Supervisão Acadêmica</td><td>Definição de escopo, prazos e validação das entregas</td></tr>
+    <tr><td>Dev Full Stack</td><td>Jhonny Tafarel</td><td>Desenvolvimento completo: front-end, back-end, integração e testes</td></tr>
+    <tr><td>Analista de Banco de Dados</td><td>Jhonny Tafarel</td><td>Modelagem, criação de tabelas, scripts SQL e otimização</td></tr>
+    <tr><td>QA / Testes</td><td>Jhonny Tafarel</td><td>Validação de funcionalidades, testes de cadastro e listagem</td></tr>
+</table>
+
+<!-- SEÇÃO 2 -->
+<h1 id="sec2">2. Resumo Executivo</h1>
+<p>
+    A <strong>Fábrica de Software Jhonny Tafarel</strong> teve a honra de desenvolver o Sistema de Cadastro de Veículos para atender à demanda do cliente. O projeto foi construído utilizando tecnologias consolidadas no mercado de desenvolvimento web, com foco em simplicidade, funcionalidade e facilidade de manutenção.
+</p>
+<p>
+    O sistema permite o cadastro completo de veículos com informações como placa, marca, modelo, cor, ano de fabricação, ano do modelo, combustível, chassi, renavam, quilometragem, data de cadastro e observações. Além disso, oferece uma tela de listagem dinâmica com DataTables, permitindo busca, ordenação, paginação e ações de editar e deletar registros.
+</p>
+<p>
+    A comunicação entre front-end e back-end é realizada via APIs em JSON, garantindo uma arquitetura moderna e desacoplada. O sistema foi desenvolvido para rodar em ambiente local (XAMPP), mas pode ser facilmente migrado para um servidor de produção.
+</p>
+
+<!-- SEÇÃO 3 -->
+<h1 id="sec3">3. Escopo do Projeto</h1>
+<h3>3.1 Funcionalidades Entregues</h3>
+<table>
+    <tr><th>#</th><th>Funcionalidade</th><th>Status</th></tr>
+    <tr><td>1</td><td>Cadastro de veículos (inserção)</td><td>✅ Entregue</td></tr>
+    <tr><td>2</td><td>Listagem de veículos (consulta)</td><td>✅ Entregue</td></tr>
+    <tr><td>3</td><td>Edição de veículos cadastrados</td><td>✅ Entregue</td></tr>
+    <tr><td>4</td><td>Exclusão de veículos</td><td>✅ Entregue</td></tr>
+    <tr><td>5</td><td>Preenchimento automático de dados aleatórios</td><td>✅ Entregue</td></tr>
+    <tr><td>6</td><td>API REST em JSON para listagem</td><td>✅ Entregue</td></tr>
+    <tr><td>7</td><td>Interface responsiva (DataTables)</td><td>✅ Entregue</td></tr>
+    <tr><td>8</td><td>Alertas com SweetAlert2 e efeitos visuais</td><td>✅ Entregue</td></tr>
+    <tr><td>9</td><td>Tela inicial com menu de navegação</td><td>✅ Entregue</td></tr>
+</table>
+
+<h3>3.2 Tecnologias Utilizadas</h3>
+<table>
+    <tr><th>Camada</th><th>Tecnologia</th><th>Versão / Fonte</th></tr>
+    <tr><td>Front-end</td><td>HTML5, CSS3, JavaScript</td><td>Padrão W3C</td></tr>
+    <tr><td>Back-end</td><td>PHP</td><td>7.4+ / 8.x</td></tr>
+    <tr><td>Banco de Dados</td><td>MySQL / MariaDB</td><td>5.7+ / 10.x</td></tr>
+    <tr><td>Servidor Web</td><td>Apache</td><td>XAMPP</td></tr>
+    <tr><td>Biblioteca JS</td><td>jQuery, DataTables, SweetAlert2, Confetti</td><td>CDN</td></tr>
+</table>
+
+<!-- SEÇÃO 4 -->
+<h1 id="sec4">4. Arquitetura do Sistema</h1>
+<p>O sistema segue uma arquitetura cliente-servidor tradicional, com comunicação via HTTP e troca de dados em formato JSON para a listagem dinâmica.</p>
+
+<h3>4.1 Diagrama de Fluxo</h3>
+<div class="codigo">
+┌──────────────┐      HTTP POST      ┌──────────────┐      SQL INSERT     ┌──────────────┐
+│              │ ──────────────────> │              │ ──────────────────> │              │
+│   Navegador  │                     │  PHP (XAMPP) │                     │    MySQL     │
+│   (Cliente)  │ <────────────────── │   (Servidor) │ <────────────────── │   (Banco)    │
+│              │    HTML / Resposta  │              │    Resultado Query  │              │
+└──────────────┘                     └──────────────┘                     └──────────────┘
+         │                                   │
+         │ fetch() JSON                      │ include 'conexao.php'
+         ▼                                   ▼
+┌──────────────┐      GET api/listar.php    ┌──────────────┐
+│  DataTables  │ <───────────────────────── │  api/listar  │
+│   + jQuery   │      JSON com veículos     │   (JSON)     │
+└──────────────┘                            └──────────────┘
+</div>
+
+<h3>4.2 Estrutura de Pastas</h3>
+<div class="codigo">
+D:\xampp\htdocs\faculdade\
+├── index.php                  → Página inicial com menu e apresentação
+├── cadastro.php               → Formulário de cadastro de veículos
+├── editar.php                 → Formulário de edição de veículos
+├── listagem.php               → Tabela dinâmica com DataTables
+├── conexao.php                → Configuração de conexão com MySQL
+├── banco_de_dados.sql         → Script de criação do banco e tabela
+├── includes/
+│   ├── header.php             → Header padrão com menu
+│   └── footer.php             → Footer padrão
+├── assets/
+│   ├── css/
+│   │   └── main.css           → Estilos globais do sistema
+│   └── js/
+│       ├── main.js            → JavaScript base
+│       ├── cadastro.js        → Preencher dados aleatórios
+│       ├── editar.js          → Confete após edição
+│       └── listagem.js        → DataTables e deletar
+├── api/
+│   ├── listar.php             → Endpoint: retorna JSON com todos os veículos
+│   ├── deletar.php            → Endpoint: recebe ID e deleta o veículo
+│   └── dados_aleatorios.php   → Endpoint: retorna dados aleatórios para teste
+└── docs/
+    └── documentacao.html      → Este documento
+</div>
+
+<!-- SEÇÃO 5 -->
+<h1 id="sec5">5. Requisitos Técnicos</h1>
+<h3>5.1 Requisitos Mínimos do Servidor</h3>
+<ul>
+    <li>Sistema Operacional: Windows 10/11, Linux ou macOS</li>
+    <li>Servidor Web: Apache 2.4+</li>
+    <li>PHP: Versão 7.4 ou superior</li>
+    <li>MySQL / MariaDB: Versão 5.7 ou superior</li>
+    <li>Pacote recomendado: XAMPP (Apache + MySQL + PHP)</li>
+</ul>
+
+<h3>5.2 Requisitos do Cliente (Navegador)</h3>
+<ul>
+    <li>Google Chrome 90+, Mozilla Firefox 88+, Microsoft Edge 90+ ou Safari 14+</li>
+    <li>JavaScript habilitado</li>
+    <li>Conexão com internet (para carregar bibliotecas via CDN)</li>
+</ul>
+
+<h3>5.3 Dependências Externas (CDN)</h3>
+<table>
+    <tr><th>Biblioteca</th><th>URL (CDN)</th><th>Função</th></tr>
+    <tr><td>jQuery</td><td>code.jquery.com</td><td>Manipulação DOM e AJAX</td></tr>
+    <tr><td>DataTables</td><td>cdn.datatables.net</td><td>Tabela interativa e responsiva</td></tr>
+    <tr><td>SweetAlert2</td><td>cdn.jsdelivr.net</td><td>Alertas e confirmações elegantes</td></tr>
+    <tr><td>Canvas Confetti</td><td>cdn.jsdelivr.net</td><td>Efeito visual de comemoração</td></tr>
+</table>
+
+<!-- SEÇÃO 6 -->
+<h1 id="sec6">6. Guia de Instalação e Configuração</h1>
+
+<h3>Passo 1: Instalar o XAMPP</h3>
+<p>Baixe e instale o XAMPP a partir do site oficial: <code>https://www.apachefriends.org</code>. Durante a instalação, certifique-se de selecionar Apache, MySQL e PHP.</p>
+
+<h3>Passo 2: Configurar a pasta do projeto</h3>
+<p>Copie todos os arquivos do sistema para a pasta do servidor web:</p>
+<div class="codigo">D:\xampp\htdocs\faculdade\</div>
+
+<h3>Passo 3: Criar o banco de dados</h3>
+<p>Acesse o phpMyAdmin pelo navegador:</p>
+<div class="codigo">http://localhost/phpmyadmin</div>
+<p>Importe o arquivo <code>banco_de_dados.sql</code> ou execute os comandos SQL diretamente:</p>
+<div class="codigo">CREATE DATABASE IF NOT EXISTS faculdade;
+USE faculdade;
+
+CREATE TABLE IF NOT EXISTS veiculos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    placa VARCHAR(10) NOT NULL,
+    marca VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    cor VARCHAR(30) NOT NULL,
+    ano_fabricacao INT NOT NULL,
+    ano_modelo INT NOT NULL,
+    combustivel VARCHAR(20) NOT NULL,
+    chassi VARCHAR(50) NOT NULL,
+    renavam VARCHAR(50) NOT NULL,
+    quilometragem INT NOT NULL,
+    data_cadastro DATE NOT NULL,
+    observacoes TEXT NOT NULL
+);</div>
+
+<h3>Passo 4: Configurar a conexão com o banco</h3>
+<p>Edite o arquivo <code>conexao.php</code> caso as credenciais do MySQL sejam diferentes:</p>
+<div class="codigo">$host = "localhost";
+$usuario = "root";     // usuário do MySQL
+$senha = "";           // senha do MySQL (vazio por padrão no XAMPP)
+$banco = "faculdade";  // nome do banco de dados</div>
+
+<h3>Passo 5: Iniciar os serviços</h3>
+<p>Abra o Painel de Controle do XAMPP e inicie o <strong>Apache</strong> e o <strong>MySQL</strong>.</p>
+
+<h3>Passo 6: Acessar o sistema</h3>
+<p>Abra o navegador e acesse:</p>
+<div class="codigo">http://localhost/faculdade/</div>
+
+<!-- SEÇÃO 7 -->
+<h1 id="sec7">7. Guia de Uso do Sistema</h1>
+
+<h3>7.1 Tela Inicial (index.php)</h3>
+<p>A página inicial apresenta uma breve descrição do projeto, as funcionalidades disponíveis e um menu de navegação para acessar as demais telas.</p>
+
+<h3>7.2 Cadastrar Veículo (cadastro.php)</h3>
+<ol>
+    <li>Acesse o menu <strong>Cadastrar</strong></li>
+    <li>Preencha todos os campos do formulário (todos são obrigatórios)</li>
+    <li>Ou clique no botão <strong>"🎲 Preencher dados aleatórios"</strong> para testar o sistema</li>
+    <li>Clique em <strong>Salvar Veículo</strong></li>
+    <li>Um alerta de sucesso com efeito de confete confirmará o cadastro</li>
+</ol>
+
+<h3>7.3 Listar Veículos (listagem.php)</h3>
+<ol>
+    <li>Acesse o menu <strong>Listagem</strong></li>
+    <li>A tabela carregará automaticamente todos os veículos cadastrados</li>
+    <li>Use a <strong>caixa de busca</strong> para filtrar por qualquer campo</li>
+    <li>Use os <strong>controles de paginação</strong> para navegar entre páginas</li>
+    <li>Clique nos cabeçalhos para <strong>ordenar</strong> por coluna</li>
+</ol>
+
+<h3>7.4 Editar Veículo</h3>
+<ol>
+    <li>Na tela de listagem, clique no botão <strong>Editar</strong> (amarelo) na linha do veículo</li>
+    <li>Altere os campos desejados no formulário</li>
+    <li>Clique em <strong>Atualizar Veículo</strong></li>
+    <li>Um alerta de sucesso com confete confirmará a atualização</li>
+</ol>
+
+<h3>7.5 Deletar Veículo</h3>
+<ol>
+    <li>Na tela de listagem, clique no botão <strong>Deletar</strong> (vermelho) na linha do veículo</li>
+    <li>Confirme a exclusão no alerta que aparecerá</li>
+    <li>O veículo será removido e a tabela será atualizada automaticamente</li>
+</ol>
+
+<!-- SEÇÃO 8 -->
+<h1 id="sec8">8. APIs Disponíveis</h1>
+
+<h3>8.1 api/listar.php</h3>
+<table>
+    <tr><th>Atributo</th><th>Valor</th></tr>
+    <tr><td>Método</td><td>GET</td></tr>
+    <tr><td>Retorno</td><td>JSON (array de objetos)</td></tr>
+    <tr><td>Descrição</td><td>Retorna todos os veículos cadastrados ordenados por ID decrescente</td></tr>
+</table>
+
+<h3>8.2 api/deletar.php</h3>
+<table>
+    <tr><th>Atributo</th><th>Valor</th></tr>
+    <tr><td>Método</td><td>POST</td></tr>
+    <tr><td>Parâmetro</td><td>id (inteiro)</td></tr>
+    <tr><td>Retorno</td><td>JSON { "sucesso": true/false, "mensagem": "..." }</td></tr>
+    <tr><td>Descrição</td><td>Remove o veículo com o ID informado</td></tr>
+</table>
+
+<h3>8.3 api/dados_aleatorios.php</h3>
+<table>
+    <tr><th>Atributo</th><th>Valor</th></tr>
+    <tr><td>Método</td><td>GET</td></tr>
+    <tr><td>Retorno</td><td>JSON (objeto com dados fake)</td></tr>
+    <tr><td>Descrição</td><td>Gera dados aleatórios de veículo para facilitar testes</td></tr>
+</table>
+
+<!-- SEÇÃO 9 -->
+<h1 id="sec9">9. Manutenção e Suporte</h1>
+
+<h3>9.1 Backup do Banco de Dados</h3>
+<p>Recomendamos realizar backups periódicos do banco de dados. No phpMyAdmin, selecione o banco <code>faculdade</code>, vá até a aba <strong>Exportar</strong> e escolha o formato SQL.</p>
+
+<h3>9.2 Log de Erros</h3>
+<p>O PHP pode estar configurado para exibir erros. Em ambiente de produção, recomenda-se desabilitar a exibição de erros no arquivo <code>php.ini</code>:</p>
+<div class="codigo">display_errors = Off
+log_errors = On
+error_log = "D:/xampp/php/logs/php_error_log"</div>
+
+<h3>9.3 Suporte Técnico</h3>
+<p>Em caso de dúvidas ou problemas, entre em contato com a equipe de desenvolvimento:</p>
+<ul>
+    <li><strong>Responsável:</strong> Jhonny Tafarel</li>
+    <li><strong>Cargo:</strong> Dev Full Stack</li>
+    <li><strong>E-mail:</strong> [e-mail de contato]</li>
+</ul>
+
+<!-- SEÇÃO 10 -->
+<h1 id="sec10">10. Considerações Finais</h1>
+<p>
+    A <strong>Fábrica de Software Jhonny Tafarel</strong> agradece a oportunidade de desenvolver esta solução. O sistema foi construído com dedicação, atendendo aos requisitos solicitados e incluindo funcionalidades extras que melhoram a experiência do usuário, como o preenchimento automático de dados, a listagem dinâmica com DataTables e os efeitos visuais de confirmação.
+</p>
+<p>
+    O projeto está preparado para futuras evoluções, como autenticação de usuários, relatórios em PDF, filtros avançados e integração com outros sistemas. Estamos à disposição para novas demandas.
+</p>
+
+<div class="assinatura">
+    <p><strong>Atenciosamente,</strong></p>
+    <div class="assinatura-line">
+        Jhonny Tafarel<br>
+        Dev Full Stack<br>
+        Fábrica de Software Jhonny Tafarel
+    </div>
+</div>
+
+</body>
+</html>
