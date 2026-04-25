@@ -1,0 +1,30 @@
+# ============================================
+# CONFIGURACOES DO APACHE PARA O PROJETO
+# ============================================
+
+# Forca charset UTF-8 em todas as respostas
+AddDefaultCharset UTF-8
+
+# Desabilita listagem de diretorios (seguranca)
+Options -Indexes
+
+# Protege o proprio arquivo .htaccess
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protege arquivos sensiveis do projeto
+<FilesMatch "\.(sql|env|ini|log|gitignore|gitattributes)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protege a pasta .git
+RedirectMatch 404 /\.git
+
+# Define pagina inicial padrao
+DirectoryIndex index.php
+
+# Redireciona erros 404 para a pagina inicial
+ErrorDocument 404 /faculdade/index.php
